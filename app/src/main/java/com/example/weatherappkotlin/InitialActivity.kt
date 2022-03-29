@@ -10,6 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 const val GEO_LOCATION_REQUEST_GEO_SUCCESS = 1
+
 class InitialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +25,11 @@ class InitialActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == GEO_LOCATION_REQUEST_GEO_SUCCESS ){
-          val intent = Intent(this,MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        if (requestCode == GEO_LOCATION_REQUEST_GEO_SUCCESS) {
+            val intent = Intent(this, MainActivity::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-      }
+        }
     }
 
     private fun checkPermission() {
@@ -59,6 +60,10 @@ class InitialActivity : AppCompatActivity() {
                 .create()
                 .show()
 
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 

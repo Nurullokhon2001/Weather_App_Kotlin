@@ -357,7 +357,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:overScrollMode="never"
-                tools:layout_height="80dp" />
+                tools:layout_height="80dp"
+                tools:listitem="@layout/item_main_hourly" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -374,7 +375,8 @@
                 android:layout_marginBottom="8dp"
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:layout_height="16dp" />
+                tools:layout_height="60dp"
+                tools:listitem="@layout/item_main_daily" />
 
         </LinearLayout>
 
