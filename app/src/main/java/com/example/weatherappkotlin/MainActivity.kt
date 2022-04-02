@@ -13,7 +13,8 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherappkotlin.business.model.DailyWeatherModel
 import com.example.weatherappkotlin.business.model.HourlyWeatherModel
-import com.example.weatherappkotlin.business.model.WeatherData
+import com.example.weatherappkotlin.business.model.Weather
+import com.example.weatherappkotlin.business.model.WeatherDataModel
 import com.example.weatherappkotlin.presentor.MainPresenter
 import com.example.weatherappkotlin.view.MainView
 import com.example.weatherappkotlin.view.adapters.MainDailyListAdapter
@@ -105,7 +106,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         main_city_name_tv.text = data
     }
 
-    override fun displayCurrentData(data: WeatherData) {
+    override fun displayCurrentData(data: WeatherDataModel) {
 
         main_date_tv.text = "03 March"
         main_temp.text = "25\u00B0"

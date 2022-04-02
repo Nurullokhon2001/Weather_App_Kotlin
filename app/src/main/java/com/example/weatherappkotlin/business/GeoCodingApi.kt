@@ -1,7 +1,7 @@
 package com.example.weatherappkotlin.business
 
-import android.database.Observable
 import com.example.weatherappkotlin.business.model.GeoCodeModel
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,7 +12,7 @@ interface GeoCodingApi {
         @Query("lat") lat: String,
         @Query("lon") lon: String,
         @Query("limit") limit: String = "10",
-        @Query("appid") appid: String = "da0f8dee0d99fed9106437bf05e879ad"
-    ): Observable<GeoCodeModel>
+        @Query("appid") appid: String = "bc6618396256e12deef08922327e6149"
+    ): Observable<List<GeoCodeModel>>
 
 }

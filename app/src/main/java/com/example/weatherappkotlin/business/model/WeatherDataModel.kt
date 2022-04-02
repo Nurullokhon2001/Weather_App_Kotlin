@@ -1,5 +1,12 @@
 package com.example.weatherappkotlin.business.model
 
-class WeatherDataModel(val a: String) {
-}
-// TODO  WeatherDataModel пур кадан даркор
+data class WeatherDataModel(
+    val alerts: List<Alert>,
+    val current: Current,
+    val daily: List<DailyWeatherModel>,
+    val hourly: List<HourlyWeatherModel>,
+    val lat: Double,
+    val lon: Double,
+    val timezone: String,
+    val timezone_offset: Int
+)
