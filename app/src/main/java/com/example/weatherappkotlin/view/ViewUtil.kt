@@ -13,7 +13,7 @@ fun Long.toDateFormatOf(format: String): String {
     val timeZone = cal.timeZone
     val sdf = SimpleDateFormat(format, Locale.getDefault())
     sdf.timeZone = timeZone
-    return sdf.format(Date(this + 1000))
+    return sdf.format(Date(this * 1000))
 }
 
 fun Double.toDegree() = (this - 273.15).roundToInt().toString()

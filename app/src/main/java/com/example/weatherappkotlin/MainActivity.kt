@@ -43,7 +43,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
         initViews()
-        mainPresenter.refresh("33.44","-94.04")
+        mainPresenter.refresh("40.296872", "69.602832")
 
         main_hour_list.apply {
             adapter = MainHourlyListAdapter()
@@ -112,20 +112,25 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     @SuppressLint("SetTextI18n")
     override fun displayCurrentData(data: WeatherDataModel) {
         data.apply {
-            main_date_tv.text =current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
-            main_temp.text = current.temp.toDegree() + "°"
+            main_date_tv.text = current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
+            Log.e("displayCurrentData", "displayCurrentData: ${current.dt}")
+            main_temp.text =
+                StringBuilder().append(current.pressure.toString()).append(" °").toString()
 
-           daily[0].temp.apply {
-               main_temp_min_tv.text = min.toDegree()
-               main_temp_max_tv.text = max.toDegree()
-           }
+            daily[0].temp.apply {
+                main_temp_min_tv.text = min.toDegree()
+                main_temp_max_tv.text = max.toDegree()
+            }
 
             main_weather_image.setImageResource(R.mipmap.cloud1x)
-            main_pressue_mu_tv.text = StringBuilder().append(current.pressure.toString()).append("hPa").toString()
-            main_humidity_mu_tv.text = StringBuilder().append(current.humidity.toString()).append("%").toString()
-            main_wind_speed_mu_tv.text = StringBuilder().append(current.humidity.toString()).append("m/s").toString()
+            main_pressue_mu_tv.text =
+                StringBuilder().append(current.pressure.toString()).append(" hPa").toString()
+            main_humidity_mu_tv.text =
+                StringBuilder().append(current.humidity.toString()).append("%").toString()
+            main_wind_speed_mu_tv.text =
+                StringBuilder().append(current.humidity.toString()).append("m/s").toString()
             main_sunrise_mu_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
-            main_sunset_mu_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+            main_sunset_mu_tv.text = current.sunset.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
         }
     }
 

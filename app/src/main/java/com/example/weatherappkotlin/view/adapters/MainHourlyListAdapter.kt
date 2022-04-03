@@ -10,6 +10,8 @@ import butterknife.ButterKnife
 import com.example.weatherappkotlin.R
 import com.example.weatherappkotlin.business.model.HourlyWeatherModel
 import com.google.android.material.textview.MaterialTextView
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val TAG = "RV_TEST"
 
@@ -28,16 +30,16 @@ class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
     inner class ViewHolder(view: View) : BaseViewHolder(view) {
 
 
- //       @BindView(R.id.item_hourly_time_tv)
+        //       @BindView(R.id.item_hourly_time_tv)
         lateinit var time: MaterialTextView
 
- //       @BindView(R.id.item_hourly_temp_tv)
+        //       @BindView(R.id.item_hourly_temp_tv)
         lateinit var temperature: MaterialTextView
 
-//        @BindView(R.id.item_hourly_pop_tv)
+        //        @BindView(R.id.item_hourly_pop_tv)
         lateinit var popBate: MaterialTextView
 
-//        @BindView(R.id.item_hourly_weather_conditions_icon)
+        //        @BindView(R.id.item_hourly_weather_conditions_icon)
         lateinit var icon: ImageView
 
         init {
@@ -50,10 +52,23 @@ class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
         }
 
         override fun bindView(position: Int) {
-            time.text = "14:00"
-            temperature.text = "14 \u00B0"
-            popBate.text = "100%"
-            icon.setImageResource(R.drawable.ic_sun)
+            mData[position].apply {
+
+                val cal = Calendar.getInstance()
+                val timeZone = cal.timeZone
+                val sdf = SimpleDateFormat("\"HH:mm\"", Locale.getDefault())
+                sdf.timeZone = timeZone
+
+
+                time.text = (sdf.format(Date(dt * 1000)))
+                temperature.text =
+                    StringBuilder().append(pressure.toString()).append(" °").toString()
+
+                popBate.text = pop.toString()
+
+                icon.setImageResource(R.drawable.ic_sun)
+            }
+
         }
     }
 }

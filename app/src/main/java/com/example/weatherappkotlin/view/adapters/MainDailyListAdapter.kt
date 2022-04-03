@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.weatherappkotlin.R
 import com.example.weatherappkotlin.business.model.DailyWeatherModel
 import com.google.android.material.textview.MaterialTextView
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.roundToInt
 
 class MainDailyListAdapter() : BaseAdapter<DailyWeatherModel>() {
 
@@ -24,31 +25,49 @@ class MainDailyListAdapter() : BaseAdapter<DailyWeatherModel>() {
     inner class ViewHolder(view: View) : BaseViewHolder(view) {
 
 
-        @BindView(R.id.item_daily_date_tv)
+        //      @BindView(R.id.item_daily_date_tv)
         lateinit var date: MaterialTextView
 
-        @BindView(R.id.item_min_temp_tv)
+        //       @BindView(R.id.item_min_temp_tv)
         lateinit var min: MaterialTextView
 
-        @BindView(R.id.item_max_temp_tv)
+        //     @BindView(R.id.item_max_temp_tv)
         lateinit var max: MaterialTextView
 
-        @BindView(R.id.item_daily_weather_conditions_icon)
+        //        @BindView(R.id.item_daily_weather_conditions_icon)
         lateinit var icon: ImageView
 
-        @BindView(R.id.item_pop_temp_tv)
+        //     @BindView(R.id.item_pop_temp_tv)
         lateinit var pop: MaterialTextView
 
         init {
-            ButterKnife.bind(this, itemView)
+            //           ButterKnife.bind(this, itemView)
+            date = itemView.findViewById<MaterialTextView>(R.id.item_daily_date_tv)
+            min = itemView.findViewById<MaterialTextView>(R.id.item_min_temp_tv)
+            max = itemView.findViewById<MaterialTextView>(R.id.item_max_temp_tv)
+            pop = itemView.findViewById<MaterialTextView>(R.id.item_pop_temp_tv)
+            icon = itemView.findViewById<ImageView>(R.id.item_daily_weather_conditions_icon)
         }
 
         override fun bindView(position: Int) {
-            date.text = "1 May"
-            min.text = "14 \u00B0"
-            max.text = "14 °"
-            pop.text = "14 °"
-            icon.setImageResource(R.drawable.ic_sun)
+            mData[position].apply {
+
+                val cal = Calendar.getInstance()
+                val timeZone = cal.timeZone
+                val sdf = SimpleDateFormat("\"HH:mm\"", Locale.getDefault())
+                sdf.timeZone = timeZone
+                date.text = (sdf.format(Date(dt * 1000)))
+
+                min.text =
+                    StringBuilder().append((temp.min - 273.15).roundToInt().toString()).append(" °")
+                        .toString()
+                max.text =
+                    StringBuilder().append((temp.max - 273.15).roundToInt().toString()).append(" °")
+                        .toString()
+                pop.text = popp.toString()
+                icon.setImageResource(R.drawable.ic_sun)
+            }
+
         }
     }
 }

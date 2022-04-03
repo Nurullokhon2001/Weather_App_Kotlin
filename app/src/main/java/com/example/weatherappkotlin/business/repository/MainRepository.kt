@@ -15,7 +15,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerResponse>(api) {
     fun reloadData(lat: String, long: String) {
         Observable.zip(
-            api.provideWeatherApi().getWeatherForecast(lat, long),
             api.provideGeoCodeApi().getCityByCoord(lat, long).map {
                 it.asSequence()
                     .map { model -> model.name }
@@ -23,10 +22,11 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
                     .filterNotNull()
                     .first()
             },
-            BiFunction<WeatherDataModel, String, ServerResponse> { first, second ->
+            api.provideWeatherApi().getWeatherForecast(lat, long),
+            BiFunction<String, WeatherDataModel, ServerResponse> { first, second ->
                 ServerResponse(
-                    second,
-                    first
+                    first,
+                    second
                 )
             }
         )
@@ -34,7 +34,6 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
             .doOnNext {
                 // TODO базава чиз медарорам
             }
-
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 dateEmmiter.onNext(it)

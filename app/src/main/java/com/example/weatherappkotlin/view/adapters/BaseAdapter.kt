@@ -9,17 +9,16 @@ abstract class BaseAdapter<D> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
     private val _mData by lazy { mutableListOf<D>() }
     protected val mData: List<D> = _mData
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-//        holder.bindView(position)
+        holder.bindView(position)
     }
 
     override fun getItemCount() = _mData.size
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(data: List<D>) {
-        if (_mData.isEmpty() && (data.isNotEmpty())){
+        if (_mData.isEmpty() && (data.isNotEmpty())) {
             _mData.addAll(data)
-        }
-        else{
+        } else {
             _mData.clear()
             _mData.addAll(data)
         }
@@ -27,6 +26,6 @@ abstract class BaseAdapter<D> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
     }
 
     abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        abstract  fun bindView(position: Int)
+        abstract fun bindView(position: Int)
     }
 }
