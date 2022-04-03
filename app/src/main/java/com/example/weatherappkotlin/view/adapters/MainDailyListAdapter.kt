@@ -54,7 +54,7 @@ class MainDailyListAdapter() : BaseAdapter<DailyWeatherModel>() {
 
                 val cal = Calendar.getInstance()
                 val timeZone = cal.timeZone
-                val sdf = SimpleDateFormat("\"HH:mm\"", Locale.getDefault())
+                val sdf = SimpleDateFormat("dd MMMM", Locale.getDefault())
                 sdf.timeZone = timeZone
                 date.text = (sdf.format(Date(dt * 1000)))
 
