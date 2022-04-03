@@ -9,7 +9,7 @@ abstract class BaseAdapter<D> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
     private val _mData by lazy { mutableListOf<D>() }
     protected val mData: List<D> = _mData
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.bindView(position)
+//        holder.bindView(position)
     }
 
     override fun getItemCount() = _mData.size

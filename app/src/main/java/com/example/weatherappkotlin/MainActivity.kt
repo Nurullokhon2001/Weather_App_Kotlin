@@ -16,7 +16,7 @@ import com.example.weatherappkotlin.business.model.HourlyWeatherModel
 import com.example.weatherappkotlin.business.model.Weather
 import com.example.weatherappkotlin.business.model.WeatherDataModel
 import com.example.weatherappkotlin.presentor.MainPresenter
-import com.example.weatherappkotlin.view.MainView
+import com.example.weatherappkotlin.view.*
 import com.example.weatherappkotlin.view.adapters.MainDailyListAdapter
 import com.example.weatherappkotlin.view.adapters.MainHourlyListAdapter
 import com.google.android.gms.location.LocationCallback
@@ -41,7 +41,9 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         initViews()
+        mainPresenter.refresh("33.44","-94.04")
 
         main_hour_list.apply {
             adapter = MainHourlyListAdapter()
@@ -52,6 +54,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         main_day_list.adapter = MainDailyListAdapter()
         main_day_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         main_day_list.setHasFixedSize(true)
+
 
         mainPresenter.enable()
         geoService.requestLocationUpdates(locationRequest, geoCallback, mainLooper)
@@ -106,18 +109,24 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         main_city_name_tv.text = data
     }
 
+    @SuppressLint("SetTextI18n")
     override fun displayCurrentData(data: WeatherDataModel) {
+        data.apply {
+            main_date_tv.text =current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
+            main_temp.text = current.temp.toDegree() + "°"
 
-        main_date_tv.text = "03 March"
-        main_temp.text = "25\u00B0"
-        main_temp_min_tv.text = "19"
-        main_temp_max_tv.text = "19"
-        main_weather_image.setImageResource(R.mipmap.cloud1x)
-        main_pressue_mu_tv.text = "1023 hPa"
-        main_humidity_mu_tv.text = "88 %"
-        main_wind_speed_mu_tv.text = "5 m/s"
-        main_sunrise_mu_tv.text = "4:30"
-        main_sunset_mu_tv.text = "22:30"
+           daily[0].temp.apply {
+               main_temp_min_tv.text = min.toDegree()
+               main_temp_max_tv.text = max.toDegree()
+           }
+
+            main_weather_image.setImageResource(R.mipmap.cloud1x)
+            main_pressue_mu_tv.text = StringBuilder().append(current.pressure.toString()).append("hPa").toString()
+            main_humidity_mu_tv.text = StringBuilder().append(current.humidity.toString()).append("%").toString()
+            main_wind_speed_mu_tv.text = StringBuilder().append(current.humidity.toString()).append("m/s").toString()
+            main_sunrise_mu_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+            main_sunset_mu_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+        }
     }
 
     override fun displayHourlyData(data: List<HourlyWeatherModel>) {
