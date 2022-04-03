@@ -24,6 +24,7 @@ class MainPresenter : BasePresenter<MainView>() {
 
     fun refresh(lat: String, long: String) {
         viewState.setLoading(true)
-        repo.reloadData(lat, long)
+
+        repo.reloadData("33.44", "-94.04")
     }
 }

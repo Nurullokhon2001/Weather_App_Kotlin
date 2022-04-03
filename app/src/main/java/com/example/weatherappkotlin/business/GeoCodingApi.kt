@@ -7,7 +7,10 @@ import retrofit2.http.Query
 
 interface GeoCodingApi {
 
-    @GET("get/1.0/reverse?")
+
+   // http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid={API key}
+
+    @GET("geo/1.0/reverse?")
     fun getCityByCoord(
         @Query("lat") lat: String,
         @Query("lon") lon: String,
