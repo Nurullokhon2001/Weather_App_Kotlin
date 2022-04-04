@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.weatherappkotlin.R
 import com.example.weatherappkotlin.business.model.DailyWeatherModel
 import com.google.android.material.textview.MaterialTextView
@@ -51,23 +53,32 @@ class MainDailyListAdapter() : BaseAdapter<DailyWeatherModel>() {
 
         override fun bindView(position: Int) {
             mData[position].apply {
-
-                val cal = Calendar.getInstance()
-                val timeZone = cal.timeZone
-                val sdf = SimpleDateFormat("dd MMMM", Locale.getDefault())
-                sdf.timeZone = timeZone
-                date.text = (sdf.format(Date(dt * 1000)))
-
+                date.text = dt.toDateFormatOf("dd EEEE")
                 min.text =
-                    StringBuilder().append((temp.min - 273.15).roundToInt().toString()).append(" °")
-                        .toString()
+                    StringBuilder().append(temp.min.toDegree()).append("°").toString()
                 max.text =
-                    StringBuilder().append((temp.max - 273.15).roundToInt().toString()).append(" °")
-                        .toString()
-                pop.text = popp.toString()
-                icon.setImageResource(R.drawable.ic_sun)
+                    StringBuilder().append(temp.max.toDegree()).append("°").toString()
+                pop.text = popp.toPercentString(" %")
+
+                Glide.with(context)
+                    .load("https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png")
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(icon);
             }
 
         }
     }
+
+    fun Long.toDateFormatOf(format: String): String {
+        val cal = Calendar.getInstance()
+        val timeZone = cal.timeZone
+        val sdf = SimpleDateFormat(format, Locale.ENGLISH)
+        sdf.timeZone = timeZone
+        return sdf.format(Date(this * 1000))
+    }
+    fun Double.toPercentString(extraPart: String = "") =
+        (this + 100).roundToInt().toString() + extraPart
+
+    fun Double.toDegree() = (this - 273.15).roundToInt().toString()
 }

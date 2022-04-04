@@ -10,6 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/main_menu_btn"
             style="@style/IconButton"
@@ -80,7 +90,8 @@
                 android:id="@+id/main_weather_conditions_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_sun" />
+                android:layout_gravity="start"
+                tools:src="@drawable/ic_sun" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/main_weather_tv"
@@ -152,7 +163,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
@@ -222,7 +233,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_device_thermostat" />
+                    android:src="@drawable/ic_vote" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_humidity_mu_tv"
@@ -283,7 +294,7 @@
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/ic_device_thermostat" />
+                    android:src="@drawable/ic_voskhod" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_sunrise_mu_tv"
@@ -304,7 +315,7 @@
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/ic_device_thermostat" />
+                    android:src="@drawable/ic_zakat" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_sunset_mu_tv"

@@ -49,12 +49,12 @@
                 android:id="@+id/item_hourly_pop_tv"
                 style="@style/MainTextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"
-                android:includeFontPadding="false"
-                android:textSize="12sp"
-                android:text="20 \u00B0" />
+                android:gravity="center_vertical"
+                android:text="20 "
+                android:textSize="12sp" />
 
         </LinearLayout>
 

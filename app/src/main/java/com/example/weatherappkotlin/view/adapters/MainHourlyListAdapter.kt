@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.weatherappkotlin.R
 import com.example.weatherappkotlin.business.model.HourlyWeatherModel
 import com.google.android.material.textview.MaterialTextView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 const val TAG = "RV_TEST"
 
@@ -54,21 +57,30 @@ class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
         override fun bindView(position: Int) {
             mData[position].apply {
 
-                val cal = Calendar.getInstance()
-                val timeZone = cal.timeZone
-                val sdf = SimpleDateFormat("\"HH:mm\"", Locale.getDefault())
-                sdf.timeZone = timeZone
-
-
-                time.text = (sdf.format(Date(dt * 1000)))
-                temperature.text =
-                    StringBuilder().append(pressure.toString()).append(" °").toString()
-
-                popBate.text = pop.toString()
-
-                icon.setImageResource(R.drawable.ic_sun)
+                time.text = dt.toDateFormatOf("HH:mm")
+                temperature.text = StringBuilder().append(temp.toDegree()).append(" °").toString()
+                popBate.text = pop.toPercentString(" %")
+//01d
+                Glide.with(context)
+                    .load("https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png")
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(icon);
             }
 
         }
     }
+
+    fun Long.toDateFormatOf(format: String): String {
+        val cal = Calendar.getInstance()
+        val timeZone = cal.timeZone
+        val sdf = SimpleDateFormat(format, Locale.getDefault())
+        sdf.timeZone = timeZone
+        return sdf.format(Date(this * 1000))
+    }
+
+    fun Double.toDegree() = (this - 273.15).roundToInt().toString()
+
+    fun Double.toPercentString(extraPart: String = "") =
+        (this + 100).roundToInt().toString() + extraPart
 }
