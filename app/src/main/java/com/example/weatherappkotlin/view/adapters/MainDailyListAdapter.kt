@@ -62,7 +62,7 @@ class MainDailyListAdapter() : BaseAdapter<DailyWeatherModel>() {
 
                 Glide.with(context)
                     .load("https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png")
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .skipMemoryCache(true)
                     .into(icon);
             }
@@ -70,6 +70,7 @@ class MainDailyListAdapter() : BaseAdapter<DailyWeatherModel>() {
         }
     }
 
+    // TODO все эти 3 функции добавить в ViewUtill
     fun Long.toDateFormatOf(format: String): String {
         val cal = Calendar.getInstance()
         val timeZone = cal.timeZone
