@@ -24,13 +24,6 @@ import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.roundToInt
-
-
-const val DAY_FULL_MONTH_NAME = "dd MMMM"
-
-//const val DAY_WEEK_NAME_LONG = "dd EEEE"
-const val HOUR_DOUBLE_DOT_MINUTE = "HH:mm"
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
@@ -77,7 +70,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 //        main_sunrise_mu_tv.text = "4:30"
 //        main_sunset_mu_tv.text = "22:30"
 //    }
-
 
     // --------- Location Code ---------
 
@@ -167,8 +159,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         sdf.timeZone = timeZone
         return sdf.format(Date(this * 1000))
     }
-
-    private fun Double.toDegree() = (this - 273.15).roundToInt().toString()
 
     // ----- Moxy -----
 }
