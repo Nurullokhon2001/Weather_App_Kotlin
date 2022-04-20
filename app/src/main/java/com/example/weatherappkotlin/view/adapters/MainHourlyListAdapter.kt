@@ -63,7 +63,7 @@ class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
 //01d
                 Glide.with(context)
                     .load("https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png")
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .skipMemoryCache(true)
                     .into(icon);
             }
