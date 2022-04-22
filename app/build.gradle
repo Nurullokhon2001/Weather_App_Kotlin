@@ -59,6 +59,7 @@ dependencies {
     //RxJava3
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     ///Moxy
     def moxyVersion = '2.2.2'
