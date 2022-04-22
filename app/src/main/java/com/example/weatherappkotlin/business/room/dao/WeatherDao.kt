@@ -1,10 +1,10 @@
-package com.example.weatherappkotlin.business.room
+package com.example.weatherappkotlin.business.room.dao
 
 import androidx.room.*
+import com.example.weatherappkotlin.business.room.entity.WeatherDataEntity
 
 @Dao
 interface WeatherDao {
-
 
     @Query("SELECT * from WeatherData Where id = 1")
     fun getWeatherData(): WeatherDataEntity

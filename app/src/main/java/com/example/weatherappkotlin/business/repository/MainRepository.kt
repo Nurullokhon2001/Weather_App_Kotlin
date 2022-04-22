@@ -2,14 +2,12 @@ package com.example.weatherappkotlin.business.repository
 
 import android.util.Log
 import com.example.weatherappkotlin.business.ApiProvider
-import com.example.weatherappkotlin.business.model.GeoCodeModel
 import com.example.weatherappkotlin.business.model.WeatherDataModel
-import com.example.weatherappkotlin.business.room.WeatherDataEntity
+import com.example.weatherappkotlin.business.room.entity.WeatherDataEntity
 import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observable.zip
-import io.reactivex.rxjava3.core.Scheduler
 
 import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.schedulers.Schedulers

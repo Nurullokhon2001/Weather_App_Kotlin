@@ -1,4 +1,4 @@
-package com.example.weatherappkotlin.business.room
+package com.example.weatherappkotlin.business.room.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

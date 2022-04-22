@@ -1,24 +1,31 @@
 package com.example.weatherappkotlin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherappkotlin.business.model.GeoCodeModel
+import com.example.weatherappkotlin.presentor.MenuPresenter
 import com.example.weatherappkotlin.view.MenuView
 import com.example.weatherappkotlin.view.adapters.CityAdapter
 import com.example.weatherappkotlin.view.createObservable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_menu.*
 import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 import java.util.concurrent.TimeUnit
 
 class MenuActivity : MvpAppCompatActivity(), MenuView {
+
+    private val presenter by moxyPresenter { MenuPresenter() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+
+        presenter.enable()
+        presenter.getFavoriteList()
 
         initCityList(productions)
         initCityList(favorites)
@@ -28,7 +35,7 @@ class MenuActivity : MvpAppCompatActivity(), MenuView {
             .debounce(700, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                //TODO  (MenuActivity) if(!it.isNullOrEmpty)  presenter.getFavoriteList()
+                if (!it.isNullOrEmpty()) presenter.searchFor(it)
             }
 
     }
@@ -44,11 +51,11 @@ class MenuActivity : MvpAppCompatActivity(), MenuView {
     }
 
     override fun fillPredictionList(data: List<GeoCodeModel>) {
-        (productions.adapter as CityAdapter).updateData(data,this)
+        (productions.adapter as CityAdapter).updateData(data, this)
     }
 
     override fun fillFavoriteList(data: List<GeoCodeModel>) {
-        (favorites.adapter as CityAdapter).updateData(data,this)
+        (favorites.adapter as CityAdapter).updateData(data, this)
     }
 
 
@@ -68,11 +75,11 @@ class MenuActivity : MvpAppCompatActivity(), MenuView {
 
     private val searchItemClickListener = object : CityAdapter.SearchItemClickListener {
         override fun addToFavorite(item: GeoCodeModel) {
-            TODO("Not yet implemented")
+            presenter.saveLocation(item)
         }
 
         override fun removeFromFavorite(item: GeoCodeModel) {
-            TODO("Not yet implemented")
+            presenter.removeLocation(item)
         }
 
         override fun showWeatherIn(item: GeoCodeModel) {

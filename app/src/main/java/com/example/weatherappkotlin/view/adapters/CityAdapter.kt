@@ -63,7 +63,7 @@ class CityAdapter : BaseAdapter<GeoCodeModel>() {
 
             mData[position].apply {
                 mState.text = if (!state.isNullOrEmpty()) "\",  \" + $state\"" else ""
-                mCity.text = local_names.toString()
+//                mCity.text = local_names.en
                 mCountry.text = country
                 mFavorite.isChecked = isFavorite
             }
