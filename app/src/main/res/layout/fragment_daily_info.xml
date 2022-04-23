@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="8dp"
+    android:overScrollMode="never">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:id="@+id/topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_back"
+                style="@style/IconButton"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                app:icon="@drawable/ic_baseline_arrow_back_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/day_date"
+                style="@style/MainTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="16 Wednesday"
+                android:textSize="24sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/day_temp"
+                style="@style/MainTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="-4 \u00B0"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                tools:src="@drawable/ic_location" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/first_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintTop_toBottomOf="@id/topic" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/first_divider"
+            tools:text="temperature" />
+
+        <View
+            android:id="@+id/second_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintEnd_toEndOf="@id/tv_temperature"
+            app:layout_constraintStart_toStartOf="@id/tv_temperature"
+            app:layout_constraintTop_toBottomOf="@id/tv_temperature" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_feels_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/second_divider"
+            tools:text="feels like" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_morn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_day"
+            app:layout_constraintStart_toEndOf="@+id/tv_temperature"
+            app:layout_constraintTop_toBottomOf="@id/first_divider"
+            tools:text="morn" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_morn_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_day"
+            app:layout_constraintStart_toEndOf="@+id/tv_temperature"
+            app:layout_constraintTop_toBottomOf="@id/tv_morn"
+            tools:text="-4 \u00B0" />
+
+        <View
+            android:id="@+id/third_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintEnd_toEndOf="@id/tv_morn_top"
+            app:layout_constraintStart_toStartOf="@id/tv_morn_top"
+            app:layout_constraintTop_toBottomOf="@id/tv_morn_top" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_morn_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_day"
+            app:layout_constraintStart_toEndOf="@+id/tv_temperature"
+            app:layout_constraintTop_toBottomOf="@id/third_divider"
+            tools:text="-4 \u00B0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_eve"
+            app:layout_constraintStart_toEndOf="@+id/tv_morn"
+            app:layout_constraintTop_toBottomOf="@id/first_divider"
+            tools:text="day" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_day_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_eve"
+            app:layout_constraintStart_toEndOf="@+id/tv_morn"
+            app:layout_constraintTop_toBottomOf="@id/tv_day"
+            tools:text="-4 \u00B0" />
+
+        <View
+            android:id="@+id/for_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintEnd_toEndOf="@id/tv_day_top"
+            app:layout_constraintStart_toStartOf="@id/tv_day_top"
+            app:layout_constraintTop_toBottomOf="@id/tv_day_top" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_day_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_eve"
+            app:layout_constraintStart_toEndOf="@+id/tv_morn"
+            app:layout_constraintTop_toBottomOf="@id/for_divider"
+            tools:text="-4 \u00B0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_eve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_night"
+            app:layout_constraintStart_toEndOf="@+id/tv_day"
+            app:layout_constraintTop_toBottomOf="@id/first_divider"
+            tools:text="eve" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_eve_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_eve"
+            app:layout_constraintStart_toEndOf="@+id/tv_eve"
+            app:layout_constraintTop_toBottomOf="@id/tv_eve"
+            tools:text="-4 \u00B0" />
+
+        <View
+            android:id="@+id/five_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintEnd_toEndOf="@id/tv_eve_top"
+            app:layout_constraintStart_toStartOf="@id/tv_eve_top"
+            app:layout_constraintTop_toBottomOf="@id/tv_eve_top" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_eve_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_eve"
+            app:layout_constraintStart_toEndOf="@+id/tv_eve"
+            app:layout_constraintTop_toBottomOf="@id/five_divider"
+            tools:text="-4 \u00B0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_eve"
+            app:layout_constraintTop_toBottomOf="@id/first_divider"
+            tools:text="night" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_night_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_eve"
+            app:layout_constraintTop_toBottomOf="@id/tv_night"
+            tools:text="-4 \u00B0" />
+
+        <View
+            android:id="@+id/six_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintEnd_toEndOf="@id/tv_night_top"
+            app:layout_constraintStart_toStartOf="@id/tv_night_top"
+            app:layout_constraintTop_toBottomOf="@id/tv_night_top" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_night_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_eve"
+            app:layout_constraintTop_toBottomOf="@id/six_divider"
+            tools:text="-4 \u00B0" />
+
+        <View
+            android:id="@+id/seven_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintTop_toBottomOf="@id/tv_night_bottom" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_humidity_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seven_divider"
+            tools:text="Humidity" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity_title"
+            tools:text="56%" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_pressure_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seven_divider"
+            tools:text="Pressure" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity_title"
+            tools:text="1080hPa" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_wind_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
+            tools:text="Humidity" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind_title"
+            tools:text="56%" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_diration_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
+            tools:text="Wind diraction" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_diration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_diration_title"
+            tools:text="NNW" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_sunrise_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind"
+            tools:text="Sunrise" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_sunrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sunrise_title"
+            tools:text="8:32" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_sunset_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind"
+            tools:text="Sunset" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_sunset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sunset_title"
+            tools:text="17:42" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -40,6 +40,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportFragmentManager.beginTransaction().add(R.id.fm_container,DailyListFragment(),DailyListFragment::class.simpleName).commit()
+
         if (!intent.hasExtra("Coordinate")) {
             geoService.requestLocationUpdates(locationRequest, geoCallback, mainLooper)
         } else {
@@ -65,10 +67,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
         }
-
-        main_day_list.adapter = MainDailyListAdapter()
-        main_day_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        main_day_list.setHasFixedSize(true)
 
         mainPresenter.enable()
 
@@ -136,12 +134,13 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun displayHourlyData(data: List<HourlyWeatherModel>) {
-        (main_hour_list.adapter as MainHourlyListAdapter).updateData(data, this)
+        (main_hour_list.adapter as MainHourlyListAdapter).updateData(data,this)
 
     }
 
     override fun displayDailyData(data: List<DailyWeatherModel>) {
-        (main_day_list.adapter as MainDailyListAdapter).updateData(data, this)
+//        (main_day_list.adapter as MainDailyListAdapter).updateData(data, this)
+        (supportFragmentManager.findFragmentByTag(DailyListFragment::class.simpleName) as DailyListFragment).setData(data)
     }
 
     override fun displayError(error: Throwable) {

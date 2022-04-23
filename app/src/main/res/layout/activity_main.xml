@@ -412,16 +412,10 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="5dp"
                 android:background="@color/dividerColor" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/main_day_list"
+            <FrameLayout
+                android:id="@+id/fm_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:layout_height="60dp"
-                tools:listitem="@layout/item_main_daily" />
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
