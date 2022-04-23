@@ -39,7 +39,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        initViews()
+        initViews()
 
         if (!intent.hasExtra("Coordinate")) {
             geoService.requestLocationUpdates(locationRequest, geoCallback, mainLooper)
@@ -71,26 +71,23 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         main_day_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         main_day_list.setHasFixedSize(true)
 
-
         mainPresenter.enable()
-        geoService.requestLocationUpdates(locationRequest, geoCallback, mainLooper)
-
 
     }
 
-//    private fun initViews() {
-//        main_city_name_tv.text = "Moscow"
-//        main_date_tv.text = "03 March"
-//        main_temp.text = "25\u00B0"
-//        main_temp_min_tv.text = "19"
-//        main_temp_max_tv.text = "19"
-//        main_weather_image.setImageResource(R.mipmap.cloud1x)
-//        main_pressue_mu_tv.text = "1023 hPa"
-//        main_humidity_mu_tv.text = "88 %"
-//        main_wind_speed_mu_tv.text = "5 m/s"
-//        main_sunrise_mu_tv.text = "4:30"
-//        main_sunset_mu_tv.text = "22:30"
-//    }
+    private fun initViews() {
+        main_city_name_tv.text = "Moscow"
+        main_date_tv.text = "03 March"
+        main_temp.text = "25\u00B0"
+        main_temp_min_tv.text = "19"
+        main_temp_max_tv.text = "19"
+        main_weather_image.setImageResource(R.mipmap.cloud1x)
+        main_pressue_mu_tv.text = "1023 hPa"
+        main_humidity_mu_tv.text = "88 %"
+        main_wind_speed_mu_tv.text = "5 m/s"
+        main_sunrise_mu_tv.text = "4:30"
+        main_sunset_mu_tv.text = "22:30"
+    }
 
     // --------- Location Code ---------
 
@@ -109,7 +106,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             for (location in geo.locations) {
                 mLocation = location
                 mainPresenter.refresh(mLocation.latitude.toString(), mLocation.longitude.toString())
-                progress.visibility = View.GONE
                 Log.e("123", "onLocationResult: ${mLocation.latitude} ")
             }
         }
