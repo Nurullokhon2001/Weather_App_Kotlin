@@ -13,6 +13,6 @@ class GeoCodeEntity(
     @ColumnInfo(name = "lon") val lon: Double,
     @ColumnInfo(name = "country") val country: String,
     @ColumnInfo(name = "state") val state: String,
-    @ColumnInfo(name = "isFavorite") val isFavorite: Boolean = false
+    @ColumnInfo(name = "isFavorite") var isFavorite: Boolean = false
 
 )

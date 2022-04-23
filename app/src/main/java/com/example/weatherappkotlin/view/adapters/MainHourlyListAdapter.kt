@@ -14,9 +14,7 @@ import com.example.weatherappkotlin.view.toDateFormatOf
 import com.example.weatherappkotlin.view.toDegree
 import com.example.weatherappkotlin.view.toPercentString
 import com.google.android.material.textview.MaterialTextView
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.roundToInt
+
 
 const val TAG = "RV_TEST"
 

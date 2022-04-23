@@ -1,11 +1,9 @@
 package com.example.weatherappkotlin.business.repository
 
 import com.example.weatherappkotlin.business.ApiProvider
-import com.example.weatherappkotlin.business.model.GeoCodeModel
 import com.example.weatherappkotlin.business.room.entity.GeoCodeEntity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-
 
 const val SAVED = 1
 const val CURRENT = 0
@@ -26,12 +24,12 @@ class MenuRepository(api: ApiProvider) : BaseRepository<MenuRepository.Content>(
             }
     }
 
-    fun add(data: GeoCodeModel) {
-        getFavoriteListWith { dbAccess!!.add(item = data as GeoCodeEntity) }
+    fun add(data: GeoCodeEntity) {
+        getFavoriteListWith { dbAccess!!.add(item = data ) }
     }
 
-    fun remove(data: GeoCodeModel) {
-        getFavoriteListWith { dbAccess!!.remove(data as GeoCodeEntity) }
+    fun remove(data: GeoCodeEntity) {
+        getFavoriteListWith { dbAccess!!.remove(data) }
     }
 
     fun update() {
@@ -41,9 +39,9 @@ class MenuRepository(api: ApiProvider) : BaseRepository<MenuRepository.Content>(
     private fun getFavoriteListWith(daoQuery: (() -> Unit)? = null) {
         roomTransaction {
             daoQuery?.let { it() }
-            Content(dbAccess!!.getAll().map { it as GeoCodeModel }, SAVED)
+            Content(dbAccess!!.getAll().map { it }, SAVED)
         }
     }
 
-    data class Content(val data: List<GeoCodeModel>, val purpose: Int)
+    data class Content(val data: List<GeoCodeEntity>, val purpose: Int)
 }

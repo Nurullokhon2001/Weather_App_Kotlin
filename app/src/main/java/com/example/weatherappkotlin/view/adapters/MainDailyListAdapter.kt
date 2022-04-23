@@ -17,7 +17,6 @@ import com.google.android.material.textview.MaterialTextView
 
 class MainDailyListAdapter : BaseAdapter<DailyWeatherModel>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_main_daily, parent, false)

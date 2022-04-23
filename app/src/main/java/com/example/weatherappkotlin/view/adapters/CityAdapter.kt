@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.weatherappkotlin.R
-import com.example.weatherappkotlin.business.model.GeoCodeModel
+import com.example.weatherappkotlin.business.room.entity.GeoCodeEntity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
-class CityAdapter : BaseAdapter<GeoCodeModel>() {
+class CityAdapter : BaseAdapter<GeoCodeEntity>() {
 
     lateinit var clickListener: SearchItemClickListener
 
@@ -20,11 +20,11 @@ class CityAdapter : BaseAdapter<GeoCodeModel>() {
     }
 
     interface SearchItemClickListener {
-        fun addToFavorite(item: GeoCodeModel)
+        fun addToFavorite(item: GeoCodeEntity)
 
-        fun removeFromFavorite(item: GeoCodeModel)
+        fun removeFromFavorite(item: GeoCodeEntity)
 
-        fun showWeatherIn(item: GeoCodeModel)
+        fun showWeatherIn(item: GeoCodeEntity)
     }
 
     inner class CitySearchViewHolder(view: View) : BaseViewHolder(view) {

@@ -12,5 +12,4 @@ data class WeatherDataEntity(
     val city: String,
     @ColumnInfo(name = "json_data")
     val data: String
-) {
-}
+)

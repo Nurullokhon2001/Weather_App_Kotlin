@@ -50,8 +50,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             loc.longitude = coord.getString("lon")!!.toDouble()
             mLocation = loc
             mainPresenter.refresh(
-                lat = mLocation!!.latitude.toString(),
-                long = mLocation!!.longitude.toString()
+                lat = mLocation.latitude.toString(),
+                long = mLocation.longitude.toString()
             )
         }
 
