@@ -16,6 +16,7 @@ class MainPresenter : BasePresenter<MainView>() {
             viewState.displayCurrentData(response.weatherData)
             viewState.displayDailyData(response.weatherData.daily)
             viewState.displayHourlyData(response.weatherData.hourly)
+            viewState.setLoading(false)
             response.error?.let {
                 viewState.displayError(response.error)
             }

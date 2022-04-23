@@ -9,7 +9,7 @@ interface GeoCodeDao {
     @Query("SELECT * FROM GeoCode")
     fun getAll() : List<GeoCodeEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun add(item : GeoCodeEntity)
 
     @Delete
