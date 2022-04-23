@@ -18,10 +18,10 @@
             android:layout_marginVertical="16dp"
             android:indeterminate="true"
             android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
@@ -77,6 +77,7 @@
             android:id="@+id/main_weather_image"
             android:layout_width="160dp"
             android:layout_height="200dp"
+            android:contentDescription="@null"
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             tools:src="@mipmap/cloud1x" />
@@ -95,6 +96,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="start"
+                android:contentDescription="@null"
                 tools:src="@drawable/ic_sun" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -138,13 +140,16 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/id1"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:includeFontPadding="false"
-                    android:text="min"
-                    android:textSize="15sp" />
+                    android:text="@string/min"
+                    android:textSize="15sp"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_temp_min_tv"
@@ -158,10 +163,13 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/id3"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
-                android:background="@color/black" />
+                android:background="@color/black"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -170,13 +178,16 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/id2"
                     style="@style/MainTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:includeFontPadding="false"
-                    android:text="max"
-                    android:textSize="15sp" />
+                    android:text="@string/max"
+                    android:textSize="15sp"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_temp_max_tv"
@@ -210,9 +221,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/id4"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_device_thermostat" />
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_device_thermostat"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_pressue_mu_tv"
@@ -233,9 +248,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/id5"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_vote" />
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_vote"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_humidity_mu_tv"
@@ -256,9 +275,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/id6"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_outlined_flag_24" />
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_outlined_flag_24"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_wind_speed_mu_tv"
@@ -293,10 +316,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/id7"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
-                    android:src="@drawable/ic_voskhod" />
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_voskhod"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_sunrise_mu_tv"
@@ -316,10 +343,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/id8"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="5dp"
-                    android:src="@drawable/ic_zakat" />
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_zakat"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_sunset_mu_tv"

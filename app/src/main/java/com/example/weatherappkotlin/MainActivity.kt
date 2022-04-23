@@ -40,8 +40,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initViews()
-
         if (!intent.hasExtra("Coordinate")) {
             geoService.requestLocationUpdates(locationRequest, geoCallback, mainLooper)
         } else {
@@ -76,20 +74,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     }
 
-    private fun initViews() {
-        main_city_name_tv.text = "Moscow"
-        main_date_tv.text = "03 March"
-        main_temp.text = "25\u00B0"
-        main_temp_min_tv.text = "19"
-        main_temp_max_tv.text = "19"
-        main_weather_image.setImageResource(R.mipmap.cloud1x)
-        main_pressue_mu_tv.text = "1023 hPa"
-        main_humidity_mu_tv.text = "88 %"
-        main_wind_speed_mu_tv.text = "5 m/s"
-        main_sunrise_mu_tv.text = "4:30"
-        main_sunset_mu_tv.text = "22:30"
-    }
-
     // --------- Location Code ---------
 
     private fun initLocationRequest(): LocationRequest {
@@ -113,7 +97,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     // ---------- initial activity code ----------
-
 
     // --------- Location Code ---------
 
@@ -168,6 +151,14 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun setLoading(flag: Boolean) {
         progress_circular.isActivated = flag
         progress_circular.visibility = if (flag) View.VISIBLE else View.GONE
+        id1.visibility = if (!flag) View.VISIBLE else View.GONE
+        id2.visibility = if (!flag) View.VISIBLE else View.GONE
+        id3.visibility = if (!flag) View.VISIBLE else View.GONE
+        id4.visibility = if (!flag) View.VISIBLE else View.GONE
+        id5.visibility = if (!flag) View.VISIBLE else View.GONE
+        id6.visibility = if (!flag) View.VISIBLE else View.GONE
+        id7.visibility = if (!flag) View.VISIBLE else View.GONE
+        id8.visibility = if (!flag) View.VISIBLE else View.GONE
     }
 
 
