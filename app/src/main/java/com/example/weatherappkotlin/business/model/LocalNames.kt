@@ -1,6 +1,10 @@
 package com.example.weatherappkotlin.business.model
 
-class LocalNames {
+class LocalNames(
+    val en: String,
+    val ru: String
+) {
+
 
 }
 

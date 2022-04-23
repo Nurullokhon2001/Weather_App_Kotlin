@@ -1,9 +1,9 @@
 package com.example.weatherappkotlin.presentor
 
-import com.example.weatherappkotlin.view.MainView
 import moxy.MvpPresenter
+import moxy.MvpView
 
-abstract class BasePresenter<T : MainView> : MvpPresenter<T>() {
+abstract class BasePresenter<T : MvpView> : MvpPresenter<T>() {
 
     abstract fun  enable()
 

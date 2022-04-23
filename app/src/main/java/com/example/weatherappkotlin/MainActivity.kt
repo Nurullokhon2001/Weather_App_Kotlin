@@ -1,6 +1,7 @@
 package com.example.weatherappkotlin
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -39,6 +40,26 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
 //        initViews()
+
+        if (!intent.hasExtra("Coordinate")) {
+            geoService.requestLocationUpdates(locationRequest, geoCallback, mainLooper)
+        } else {
+            val coord = intent.extras!!.getBundle("Coordinate")!!
+            val loc = Location("")
+            loc.latitude = coord.getString("lat")!!.toDouble()
+            loc.longitude = coord.getString("lon")!!.toDouble()
+            mLocation = loc
+            mainPresenter.refresh(
+                lat = mLocation!!.latitude.toString(),
+                long = mLocation!!.longitude.toString()
+            )
+        }
+
+        main_menu_btn.setOnClickListener {
+            val intent = Intent(this,MenuActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_left)
+        }
 
         main_hour_list.apply {
             adapter = MainHourlyListAdapter()
