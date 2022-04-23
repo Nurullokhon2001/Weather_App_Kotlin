@@ -3,9 +3,9 @@ package com.example.weatherappkotlin.presentor
 
 import android.util.Log
 import com.example.weatherappkotlin.business.ApiProvider
-import com.example.weatherappkotlin.business.model.GeoCodeModel
 import com.example.weatherappkotlin.business.repository.MenuRepository
 import com.example.weatherappkotlin.business.repository.SAVED
+import com.example.weatherappkotlin.business.room.entity.GeoCodeEntity
 import com.example.weatherappkotlin.view.MenuView
 
 class MenuPresenter : BasePresenter<MenuView>() {
@@ -17,11 +17,11 @@ class MenuPresenter : BasePresenter<MenuView>() {
             viewState.setLoading(false)
             if (it.purpose == SAVED) {
                 Log.d("enable", "enable: SAVED ${it.data}")
-                viewState.fillFavoriteList(it.data)
+                viewState.fillFavoriteListt(it.data)
             } else {
                 Log.d("enable", "enable: CURRENT ${it.data}")
 
-                viewState.fillPredictionList(it.data)
+                viewState.fillPredictionListt(it.data)
             }
         }
     }
@@ -30,11 +30,11 @@ class MenuPresenter : BasePresenter<MenuView>() {
         repo.getCities(str)
     }
 
-    fun removeLocation(data: GeoCodeModel) {
+    fun removeLocation(data: GeoCodeEntity) {
         repo.remove(data)
     }
 
-    fun saveLocation(data: GeoCodeModel) {
+    fun saveLocation(data: GeoCodeEntity) {
         repo.add(data)
     }
 

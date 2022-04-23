@@ -1,6 +1,7 @@
 package com.example.weatherappkotlin.view
 
 import com.example.weatherappkotlin.business.model.GeoCodeModel
+import com.example.weatherappkotlin.business.room.entity.GeoCodeEntity
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 
@@ -10,8 +11,8 @@ interface MenuView : MvpView {
     fun setLoading(flag: Boolean)
 
     @AddToEndSingle
-    fun fillPredictionList(data: List<GeoCodeModel>)
+    fun fillPredictionListt(data: List<GeoCodeEntity>)
 
     @AddToEndSingle
-    fun fillFavoriteList(data: List<GeoCodeModel>)
+    fun fillFavoriteListt(data: List<GeoCodeEntity>)
 }

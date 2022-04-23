@@ -8,7 +8,6 @@ import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observable.zip
-
 import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -17,7 +16,6 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
    private val gson = Gson()
 
     private  val dbAccess = db!!.getWeatherDao()
-
 
     fun reloadData(lat: String, long: String) {
        zip(

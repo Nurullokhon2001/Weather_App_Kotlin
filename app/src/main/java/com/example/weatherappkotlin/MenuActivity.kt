@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherappkotlin.business.model.GeoCodeModel
+import com.example.weatherappkotlin.business.room.entity.GeoCodeEntity
 import com.example.weatherappkotlin.presentor.MenuPresenter
 import com.example.weatherappkotlin.view.MenuView
 import com.example.weatherappkotlin.view.adapters.CityAdapter
@@ -50,11 +50,11 @@ class MenuActivity : MvpAppCompatActivity(), MenuView {
         loading.visibility = if (flag) View.VISIBLE else View.GONE
     }
 
-    override fun fillPredictionList(data: List<GeoCodeModel>) {
+    override fun fillPredictionListt(data: List<GeoCodeEntity>) {
         (productions.adapter as CityAdapter).updateData(data, this)
     }
 
-    override fun fillFavoriteList(data: List<GeoCodeModel>) {
+    override fun fillFavoriteListt(data: List<GeoCodeEntity>) {
         (favorites.adapter as CityAdapter).updateData(data, this)
     }
 
@@ -74,15 +74,15 @@ class MenuActivity : MvpAppCompatActivity(), MenuView {
     }
 
     private val searchItemClickListener = object : CityAdapter.SearchItemClickListener {
-        override fun addToFavorite(item: GeoCodeModel) {
+        override fun addToFavorite(item: GeoCodeEntity) {
             presenter.saveLocation(item)
         }
 
-        override fun removeFromFavorite(item: GeoCodeModel) {
+        override fun removeFromFavorite(item: GeoCodeEntity) {
             presenter.removeLocation(item)
         }
 
-        override fun showWeatherIn(item: GeoCodeModel) {
+        override fun showWeatherIn(item: GeoCodeEntity) {
             val intent = Intent(this@MenuActivity, MainActivity::class.java)
             val bundle = Bundle()
             bundle.putString("lat", item.lat.toString())
