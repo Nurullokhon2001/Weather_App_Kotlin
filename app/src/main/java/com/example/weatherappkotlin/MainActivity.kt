@@ -21,6 +21,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_menu.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
@@ -165,7 +166,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun setLoading(flag: Boolean) {
-
+        progress_circular.isActivated = flag
+        progress_circular.visibility = if (flag) View.VISIBLE else View.GONE
     }
 
 

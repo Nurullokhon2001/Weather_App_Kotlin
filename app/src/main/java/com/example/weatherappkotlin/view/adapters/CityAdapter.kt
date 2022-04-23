@@ -63,7 +63,7 @@ class CityAdapter : BaseAdapter<GeoCodeEntity>() {
 
             mData[position].apply {
                 mState.text = if (!state.isNullOrEmpty()) ",   $state" else ""
-                mCity.text = name
+                mCity.text =  name
                 mCountry.text = country
                 mFavorite.isChecked = isFavorite
             }
