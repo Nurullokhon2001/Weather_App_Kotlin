@@ -32,6 +32,7 @@ class DailyListFragment : DailyBaseFragment<List<DailyWeatherModel>>() {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
             dailyAdapter.clickListener = clickListener
+            isNestedScrollingEnabled = true
         }
 
         mData?.let {

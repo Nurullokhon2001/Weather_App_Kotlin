@@ -2,10 +2,13 @@ package com.example.weatherappkotlin
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Point
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.PointerIcon
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -26,6 +29,7 @@ import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
@@ -39,8 +43,10 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        supportFragmentManager.beginTransaction().add(R.id.fm_container,DailyListFragment(),DailyListFragment::class.simpleName).commit()
+        initBottomSheets()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fm_container, DailyListFragment(), DailyListFragment::class.simpleName)
+            .commit()
 
         if (!intent.hasExtra("Coordinate")) {
             geoService.requestLocationUpdates(locationRequest, geoCallback, mainLooper)
@@ -57,7 +63,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
 
         main_menu_btn.setOnClickListener {
-            val intent = Intent(this,MenuActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_left)
         }
@@ -134,13 +140,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun displayHourlyData(data: List<HourlyWeatherModel>) {
-        (main_hour_list.adapter as MainHourlyListAdapter).updateData(data,this)
+        (main_hour_list.adapter as MainHourlyListAdapter).updateData(data, this)
 
     }
 
     override fun displayDailyData(data: List<DailyWeatherModel>) {
 //        (main_day_list.adapter as MainDailyListAdapter).updateData(data, this)
-        (supportFragmentManager.findFragmentByTag(DailyListFragment::class.simpleName) as DailyListFragment).setData(data)
+        (supportFragmentManager.findFragmentByTag(DailyListFragment::class.simpleName) as DailyListFragment).setData(
+            data
+        )
     }
 
     override fun displayError(error: Throwable) {
@@ -160,14 +168,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         id8.visibility = if (!flag) View.VISIBLE else View.GONE
     }
 
+    // ----- Moxy -----
 
-    private fun Long.toDateFormatOf(format: String): String {
-        val cal = Calendar.getInstance()
-        val timeZone = cal.timeZone
-        val sdf = SimpleDateFormat(format, Locale.ENGLISH)
-        sdf.timeZone = timeZone
-        return sdf.format(Date(this * 1000))
+    private fun initBottomSheets() {
+        main_bottom_sheets.isNestedScrollingEnabled = true
+        val size = Point()
+        windowManager.defaultDisplay.getSize(size)
+        main_bottom_sheets_container.layoutParams =
+            CoordinatorLayout.LayoutParams(size.x, (size.y * 0.6).roundToInt())
     }
 
-    // ----- Moxy -----
+
 }
