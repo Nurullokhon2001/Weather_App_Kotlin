@@ -49,6 +49,7 @@
                 android:textSize="24sp" />
 
             <ImageView
+                android:id="@+id/iv_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
@@ -70,9 +71,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="40dp"
+            android:text="temperature"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/first_divider"
-            tools:text="temperature" />
+            app:layout_constraintTop_toBottomOf="@id/first_divider" />
 
         <View
             android:id="@+id/second_divider"
@@ -90,9 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
+            android:text="feels like"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/second_divider"
-            tools:text="feels like" />
+            app:layout_constraintTop_toBottomOf="@id/second_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_morn"
@@ -100,10 +101,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:text="morn"
             app:layout_constraintEnd_toStartOf="@id/tv_day"
             app:layout_constraintStart_toEndOf="@+id/tv_temperature"
-            app:layout_constraintTop_toBottomOf="@id/first_divider"
-            tools:text="morn" />
+            app:layout_constraintTop_toBottomOf="@id/first_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_morn_top"
@@ -140,10 +141,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:text="day"
             app:layout_constraintEnd_toStartOf="@id/tv_eve"
             app:layout_constraintStart_toEndOf="@+id/tv_morn"
-            app:layout_constraintTop_toBottomOf="@id/first_divider"
-            tools:text="day" />
+            app:layout_constraintTop_toBottomOf="@id/first_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_day_top"
@@ -180,10 +181,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:text="eve"
             app:layout_constraintEnd_toStartOf="@id/tv_night"
             app:layout_constraintStart_toEndOf="@+id/tv_day"
-            app:layout_constraintTop_toBottomOf="@id/first_divider"
-            tools:text="eve" />
+            app:layout_constraintTop_toBottomOf="@id/first_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_eve_top"
@@ -220,10 +221,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:text="night"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_eve"
-            app:layout_constraintTop_toBottomOf="@id/first_divider"
-            tools:text="night" />
+            app:layout_constraintTop_toBottomOf="@id/first_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_night_top"
@@ -270,9 +271,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:text="Humidity"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seven_divider"
-            tools:text="Humidity" />
+            app:layout_constraintTop_toBottomOf="@id/seven_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_humidity"
@@ -285,15 +286,23 @@
             app:layout_constraintTop_toBottomOf="@id/tv_humidity_title"
             tools:text="56%" />
 
+        <View
+            android:id="@+id/eight_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_pressure_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
+            android:text="Pressure"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seven_divider"
-            tools:text="Pressure" />
+            app:layout_constraintTop_toBottomOf="@id/seven_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_pressure"
@@ -312,9 +321,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:text="Wind speed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
-            tools:text="Humidity" />
+            app:layout_constraintTop_toBottomOf="@id/eight_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_wind"
@@ -325,7 +334,15 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_wind_title"
-            tools:text="56%" />
+            tools:text="2.4 m/s" />
+
+        <View
+            android:id="@+id/nine_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_diration_title"
@@ -333,9 +350,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
+            android:text="Wind diraction"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
-            tools:text="Wind diraction" />
+            app:layout_constraintTop_toBottomOf="@id/eight_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_diration"
@@ -354,9 +371,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:text="Sunrise"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_wind"
-            tools:text="Sunrise" />
+            app:layout_constraintTop_toBottomOf="@id/nine_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_sunrise"
@@ -375,9 +392,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
+            android:text="Sunset"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_wind"
-            tools:text="Sunset" />
+            app:layout_constraintTop_toBottomOf="@id/nine_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_sunset"
@@ -389,6 +406,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_sunset_title"
             tools:text="17:42" />
+
+        <View
+            android:id="@+id/ten_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintTop_toBottomOf="@id/tv_sunset" />
+
+        <View
+            android:id="@+id/eleven_divider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintBottom_toBottomOf="@id/ten_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seven_divider" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
