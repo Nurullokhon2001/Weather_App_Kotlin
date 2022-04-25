@@ -33,21 +33,20 @@ class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
     inner class ViewHolder(view: View) : BaseViewHolder(view) {
 
 
-         private var time: MaterialTextView = itemView.findViewById(R.id.item_hourly_time_tv)
+        private var time: MaterialTextView = itemView.findViewById(R.id.item_hourly_time_tv)
 
         private var temperature: MaterialTextView = itemView.findViewById(R.id.item_hourly_temp_tv)
 
         private var popBate: MaterialTextView = itemView.findViewById(R.id.item_hourly_pop_tv)
 
-        private   var icon: ImageView = itemView.findViewById(R.id.item_hourly_weather_conditions_icon)
+        private var icon: ImageView =
+            itemView.findViewById(R.id.item_hourly_weather_conditions_icon)
 
         override fun bindView(position: Int) {
             mData[position].apply {
-
                 time.text = dt.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
                 temperature.text = StringBuilder().append(temp.toDegree()).append(" °").toString()
-                popBate.text = pop.toPercentString(" %")
-//01d
+                popBate.text = "$humidity %"
                 Glide.with(context)
                     .load("https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png")
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

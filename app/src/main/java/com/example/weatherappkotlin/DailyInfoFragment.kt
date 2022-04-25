@@ -2,7 +2,10 @@ package com.example.weatherappkotlin
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.transition.Transition
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
+import android.view.SurfaceControl
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -16,6 +19,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_daily_info.*
 
 class DailyInfoFragment : DailyBaseFragment<DailyWeatherModel>() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val inflater = TransitionInflater.from(requireContext())
+
+        exitTransition = inflater.inflateTransition(R.transition.slide_right)
+        enterTransition = inflater.inflateTransition(R.transition.slide_out_right)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

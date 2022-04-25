@@ -1,5 +1,6 @@
 package com.example.weatherappkotlin.view.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +18,11 @@ import com.google.android.material.textview.MaterialTextView
 
 class MainDailyListAdapter : BaseAdapter<DailyWeatherModel>() {
 
-    interface DayItemClick{
-        fun showDetails(data : DailyWeatherModel)
+    interface DayItemClick {
+        fun showDetails(data: DailyWeatherModel)
     }
 
-    lateinit var clickListener : DayItemClick
+    lateinit var clickListener: DayItemClick
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -34,25 +35,31 @@ class MainDailyListAdapter : BaseAdapter<DailyWeatherModel>() {
     inner class ViewHolder(view: View) : BaseViewHolder(view) {
 
 
-        private  var date: MaterialTextView = itemView.findViewById(R.id.item_daily_date_tv)
+        private var date: MaterialTextView = itemView.findViewById(R.id.item_daily_date_tv)
 
         private var min: MaterialTextView = itemView.findViewById(R.id.item_min_temp_tv)
 
-        private    var max: MaterialTextView = itemView.findViewById(R.id.item_max_temp_tv)
+        private var max: MaterialTextView = itemView.findViewById(R.id.item_max_temp_tv)
 
-        private  var icon: ImageView = itemView.findViewById(R.id.item_daily_weather_conditions_icon)
+        private var icon: ImageView = itemView.findViewById(R.id.item_daily_weather_conditions_icon)
 
         private var pop: MaterialTextView = itemView.findViewById(R.id.item_pop_temp_tv)
 
         override fun bindView(position: Int) {
+            val dateOfDate = mData[position].dt.toDateFormatOf(DAY_WEEK_NAME_LONG)
             mData[position].apply {
-                date.text = dt.toDateFormatOf(DAY_WEEK_NAME_LONG)
+                date.text = if (dateOfDate.startsWith(
+                        "0",
+                        true
+                    )
+                ) dateOfDate.removePrefix("0") else dateOfDate
                 min.text =
                     StringBuilder().append(temp.min.toDegree()).append("°").toString()
                 max.text =
                     StringBuilder().append(temp.max.toDegree()).append("°").toString()
-                pop.text = popp.toPercentString(" %")
-                itemView.setOnClickListener{clickListener.showDetails(mData[position])}
+                pop.text = "$humidity %"
+
+                itemView.setOnClickListener { clickListener.showDetails(mData[position]) }
 
                 Glide.with(context)
                     .load("https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png")
