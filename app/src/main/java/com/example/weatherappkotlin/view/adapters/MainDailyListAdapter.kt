@@ -17,6 +17,12 @@ import com.google.android.material.textview.MaterialTextView
 
 class MainDailyListAdapter : BaseAdapter<DailyWeatherModel>() {
 
+    interface DayItemClick{
+        fun showDetails(data : DailyWeatherModel)
+    }
+
+    lateinit var clickListener : DayItemClick
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_main_daily, parent, false)
@@ -46,6 +52,7 @@ class MainDailyListAdapter : BaseAdapter<DailyWeatherModel>() {
                 max.text =
                     StringBuilder().append(temp.max.toDegree()).append("°").toString()
                 pop.text = popp.toPercentString(" %")
+                itemView.setOnClickListener{clickListener.showDetails(mData[position])}
 
                 Glide.with(context)
                     .load("https://openweathermap.org/img/wn/" + weather[0].icon + "@2x.png")

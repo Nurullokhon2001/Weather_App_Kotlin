@@ -17,7 +17,7 @@ abstract class BaseAdapter<D> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
     override fun getItemCount() = _mData.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(data: List<D> , context : Context) {
+    fun updateData(data: List<D>,context: Context ) {
         if (_mData.isEmpty() && (data.isNotEmpty())) {
             _mData.addAll(data)
             this.context = context

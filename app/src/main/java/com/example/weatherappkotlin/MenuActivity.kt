@@ -51,11 +51,11 @@ class MenuActivity : MvpAppCompatActivity(), MenuView {
     }
 
     override fun fillPredictionListt(data: List<GeoCodeEntity>) {
-        (productions.adapter as CityAdapter).updateData(data, this)
+        (productions.adapter as CityAdapter).updateData(data,this)
     }
 
     override fun fillFavoriteListt(data: List<GeoCodeEntity>) {
-        (favorites.adapter as CityAdapter).updateData(data, this)
+        (favorites.adapter as CityAdapter).updateData(data,this)
     }
 
 
